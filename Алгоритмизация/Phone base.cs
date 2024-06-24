@@ -29,13 +29,13 @@ namespace phone_base
         static void Main(string[] args)
         {
             string end = "END";
-            Console.WriteLine("Введите "+end+" когда закончите ввод в базу! ");
+            Console.WriteLine("Введите " + end + " когда закончите ввод в базу! ");
             Console.WriteLine("Введите номер с которго звонили:");
-            string str=Console.ReadLine();
+            string str = Console.ReadLine();
             List<Phone_base> list = new List<Phone_base>();
             while (str != end)
             {
-                
+
                 string phone_from = str;
                 Console.WriteLine("Введите номер на который звонили:");
                 string phone_where = Console.ReadLine();
@@ -47,11 +47,40 @@ namespace phone_base
                 list.Add(phone_base1);
                 Console.WriteLine("Введите номер с которго звонили:");
                 str = Console.ReadLine();
-                
+
             }
             Console.WriteLine("Введите номер абонента для которого вы хотите узнать кому он чаще всего звонил:");
             string find_number_call = Console.ReadLine();
+            int number = 0,int count = 0,int max = 0;
+            for (int i=1;i<list.Count; i++)
+            {
+                for(int j=0;j<list.Count-1;j++)
+                {
+                    count = 0;
+                    if ((list[j].Phone_number_from == find_number_call) && (list[j].Date == list[i].Date) && (list[j].Phone_number_where == list[i].Phone_number_where))
+                    {
+                        count++;
+                        number = i;
+                        if (count > max)
+                        {
+                            max = count;
+                            Console.WriteLine($"дата:{list[i]}, кому звонил болльше всего:{last[i].Phone_number_where}");
+                        }
+                    }
+                   
 
+                }
+                
+            }
+            /*string str = list[0].Phine_number_where;
+            for (int i = 1; i < list.Count; i++)
+            {
+                if (list[i].Phone_number_from==find_number_call)
+                {
+                    str = list[i].Phone_number_where;
+                    if()
+                }
+            }*/
             Console.WriteLine("---------------------------------------------------------------------------------------------");
             for (int i = 0; i < list.Count; i++) 
             {
